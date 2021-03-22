@@ -78,7 +78,7 @@ class CloudFrontInvalidations
             ]
         ]);
 
-        $caller = '';
+        $caller = $_ENV['HTTP_HOST'];
 
         foreach (array_chunk($pagesOrURLs, static::API_URL_BATCH_SIZE) as $urlBatch) {
             $items = array_values($urlBatch);
@@ -92,7 +92,7 @@ class CloudFrontInvalidations
                     ]
                 ]
             ];
-            $cloudFront->createInvalidationAsync($invalidation);
+            $cloudFront->createInvalidation($invalidation);
         }
     }
 
