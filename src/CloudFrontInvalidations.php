@@ -64,7 +64,7 @@ class CloudFrontInvalidations
         }
 
         $pagesOrURLs = array_map(function ($urlItem) {
-            return parse_url($urlItem)['path'];
+            return parse_url($urlItem)['path']."*";
         }, $pagesOrURLs);
 
         $cloudFrontConfig = [
