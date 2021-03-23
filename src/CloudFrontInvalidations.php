@@ -75,10 +75,10 @@ class CloudFrontInvalidations
         $awsAccessKeyID = option('liftric.cloudfrontinvalidations.awsAccessKeyID');
         $awsSecretAccessKey = option('liftric.cloudfrontinvalidations.awsSecretAccessKey');
         if ($awsAccessKeyID != '' && $awsSecretAccessKey != '') {
-            array_push($cloudFrontConfig, ['credentials' => [
+            $cloudFrontConfig['credentials'] = [
                 'key' => $awsAccessKeyID,
                 'secret' => $awsSecretAccessKey
-            ]]);
+            ];
         }
 
         $cloudFront = new CloudFrontClient($cloudFrontConfig);
