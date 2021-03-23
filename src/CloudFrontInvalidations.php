@@ -42,9 +42,7 @@ class CloudFrontInvalidations
         }
 
         $cloudFrontDistributionId = option('liftric.cloudfrontinvalidations.cloudFrontDistributionId');
-        $awsAccessKeyID = option('liftric.cloudfrontinvalidations.awsAccessKeyID');
-        $awsSecretAccessKey = option('liftric.cloudfrontinvalidations.awsSecretAccessKey');
-        if ('' == $cloudFrontDistributionId || '' == $awsAccessKeyID || '' == $awsSecretAccessKey) {
+        if ($cloudFrontDistributionId == '') {
             return;
         }
 
@@ -69,14 +67,21 @@ class CloudFrontInvalidations
             return parse_url($urlItem)['path'];
         }, $pagesOrURLs);
 
-        $cloudFront = new CloudFrontClient([
+        $cloudFrontConfig = [
             'version' => 'latest',
             'region' => 'eu-central-1',
-            'credentials' => [
+        ];
+
+        $awsAccessKeyID = option('liftric.cloudfrontinvalidations.awsAccessKeyID');
+        $awsSecretAccessKey = option('liftric.cloudfrontinvalidations.awsSecretAccessKey');
+        if ($awsAccessKeyID != '' && $awsSecretAccessKey != '') {
+            array_push($cloudFrontConfig, ['credentials' => [
                 'key' => $awsAccessKeyID,
                 'secret' => $awsSecretAccessKey
-            ]
-        ]);
+            ]]);
+        }
+
+        $cloudFront = new CloudFrontClient($cloudFrontConfig);
 
         foreach (array_chunk($pagesOrURLs, static::API_URL_BATCH_SIZE) as $urlBatch) {
             $items = array_values($urlBatch);
