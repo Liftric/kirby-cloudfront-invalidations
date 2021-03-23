@@ -4,8 +4,8 @@ namespace Liftric;
 
 use Aws\CloudFront\CloudFrontClient;
 use Kirby\Cms\Page;
-use Kirby\Http\Remote;
 use Kirby\Toolkit\Collection;
+use Kirby\Toolkit\Str;
 
 class CloudFrontInvalidations
 {
@@ -78,14 +78,12 @@ class CloudFrontInvalidations
             ]
         ]);
 
-        $caller = $_ENV['HTTP_HOST'];
-
         foreach (array_chunk($pagesOrURLs, static::API_URL_BATCH_SIZE) as $urlBatch) {
             $items = array_values($urlBatch);
             $invalidation = [
                 'DistributionId' => $cloudFrontDistributionId,
                 'InvalidationBatch' => [
-                    'CallerReference' => $caller,
+                    'CallerReference' => Str::random(16),
                     'Paths' => [
                         'Items' => $items,
                         'Quantity' => count($items)
@@ -95,5 +93,4 @@ class CloudFrontInvalidations
             $cloudFront->createInvalidation($invalidation);
         }
     }
-
 }
