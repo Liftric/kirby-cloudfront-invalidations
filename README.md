@@ -23,20 +23,20 @@ If you rely on the default credential provider chain, you just need to set the `
 ### `liftric.cloudfrontinvalidations.distributionID`
 This must be set to your AWS CloudFront distribution ID (available in the AWS CloudFront Distributions dashboard).
 
-### `liftric.cloudfrontinvalidations.awsAccessKeyID` (optional)
-This must be set to the AWS access key ID of your AWS account.
+### `liftric.cloudfrontinvalidations.awsAccessKeyID`
+**(optional)** This can be set to the AWS access key ID of your AWS account, if you are not using the default credential provider chain.
 
-### `liftric.cloudfrontinvalidations.awsSecretAccessKey` (optional)
-This must be set to the AWS secret access key of your AWS account.
+### `liftric.cloudfrontinvalidations.awsSecretAccessKey`
+**(optional)** This can be set to the AWS secret access key of your AWS account, if you are not using the default credential provider chain.
 
-### `liftric.cloudfrontinvalidations.dependantUrlsForPage` (optional)
-This must be a function that returns what URL(s) should be cleared after a page modification.
+### `liftric.cloudfrontinvalidations.dependantUrlsForPage`
+**(optional)** This must be a function that returns what URL(s) should be cleared after a page modification.
 
-### `liftric.cloudfrontinvalidations.dependantUrlsForFile` (optional)
-This must be a function that returns what URL(s) should be cleared after a file modification.
+### `liftric.cloudfrontinvalidations.dependantUrlsForFile`
+**(optional)** This must be a function that returns what URL(s) should be cleared after a file modification.
 
-### `liftric.cloudfrontinvalidations.dependantUrlsForSite` (optional)
-This must be a function that returns what URL(s) should be cleared after a site modification.
+### `liftric.cloudfrontinvalidations.dependantUrlsForSite`
+**(optional)** This must be a function that returns what URL(s) should be cleared after a site modification.
 
 ## Example config
 
@@ -84,4 +84,4 @@ MIT
 
 ## Kudos
 
-- [Neil Daniels](https://github.com/neildaniels) of [The Streamable](https://thestreamable.com) for creating the [kirby-clear-cloudflare-cache plugin](https://github.com/thestreamable/kirby-clear-cloudflare-cache).
+- [Neil Daniels](https://github.com/neildaniels) of [The Streamable](https://thestreamable.com) for creating the [kirby-clear-cloudflare-cache plugin](https://github.com/thestreamable/kirby-clear-cloudflare-cache) which basically served as a blueprint for this plugin.
