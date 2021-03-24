@@ -41,7 +41,7 @@ class CloudFrontInvalidations
             return;
         }
 
-        $cloudFrontDistributionId = option('liftric.cloudfrontinvalidations.cloudFrontDistributionId');
+        $cloudFrontDistributionId = option('liftric.cloudfrontinvalidations.distributionId');
         if ($cloudFrontDistributionId == '') {
             return;
         }
