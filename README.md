@@ -12,7 +12,11 @@ composer require liftric/kirby-cloudfront-invalidations
 
 ## Setup
 
-If you rely on the default credential provider chain, you just need to set the `cloudFrontDistributionId`.
+If you rely on the default credential provider chain, you just need to set the `distributionId`:
+
+```php
+'liftric.cloudfrontinvalidations.distributionId' => 'YOUR_CF_DISTRIBUTION_ID'
+```
 
 ## Config
 
