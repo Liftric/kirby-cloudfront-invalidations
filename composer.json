@@ -1,5 +1,5 @@
 {
-    "name": "liftric/kirby-aws-cloudfront-invalidations",
+    "name": "liftric/kirby-cloudfront-invalidations",
     "description": "Kirby plugin for automatic slug invalidation in AWS CloudFront",
     "type": "kirby-plugin",
     "license": "MIT",
