@@ -1,4 +1,4 @@
-# kirby-aws-cloudfront-invalidations
+# kirby-cloudfront-invalidations
 
 Kirby plugin for automatic slug invalidation in AWS CloudFront
 
@@ -7,7 +7,7 @@ Kirby plugin for automatic slug invalidation in AWS CloudFront
 ### Composer
 
 ```
-composer require liftric/kirby-aws-cloudfront-invalidations
+composer require liftric/kirby-cloudfront-invalidations
 ```
 
 ## Setup
