@@ -64,12 +64,12 @@ class CloudFrontInvalidations
         }
 
         $pagesOrURLs = array_map(function ($urlItem) {
-            return parse_url($urlItem)['path'] . "*";
+            return parse_url($urlItem)['path'] . '*';
         }, $pagesOrURLs);
 
         $cloudFrontConfig = [
             'version' => 'latest',
-            'region' => 'eu-central-1',
+            'region' => 'eu-central-1', // basically irrelevant for AWS CloudFront invalidations
         ];
 
         $awsAccessKeyID = option('liftric.cloudfrontinvalidations.awsAccessKeyID');
