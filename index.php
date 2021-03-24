@@ -6,7 +6,7 @@ use Liftric\CloudFrontInvalidations;
 
 Kirby::plugin('liftric/cloudfrontinvalidations', [
     'options' => [
-        'cloudFrontDistributionId' => null,
+        'distributionID' => null,
         'awsAccessKeyID' => null,
         'awsSecretAccessKey' => null,
         'dependantUrlsForPage' => function ($hook, $page, $oldPage = null) {

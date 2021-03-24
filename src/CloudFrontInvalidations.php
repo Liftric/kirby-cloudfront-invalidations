@@ -41,8 +41,8 @@ class CloudFrontInvalidations
             return;
         }
 
-        $cloudFrontDistributionId = option('liftric.cloudfrontinvalidations.distributionId');
-        if ($cloudFrontDistributionId == '') {
+        $distributionID = option('liftric.cloudfrontinvalidations.distributionID');
+        if ($distributionID == '') {
             return;
         }
 
@@ -64,7 +64,7 @@ class CloudFrontInvalidations
         }
 
         $pagesOrURLs = array_map(function ($urlItem) {
-            return parse_url($urlItem)['path']."*";
+            return parse_url($urlItem)['path'] . "*";
         }, $pagesOrURLs);
 
         $cloudFrontConfig = [
@@ -86,7 +86,7 @@ class CloudFrontInvalidations
         foreach (array_chunk($pagesOrURLs, static::API_URL_BATCH_SIZE) as $urlBatch) {
             $items = array_values($urlBatch);
             $invalidation = [
-                'DistributionId' => $cloudFrontDistributionId,
+                'DistributionId' => $distributionID,
                 'InvalidationBatch' => [
                     'CallerReference' => Str::random(16),
                     'Paths' => [
