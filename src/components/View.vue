@@ -1,16 +1,34 @@
 <template>
-  <k-view className="k-test-view">
-    <k-header>Example</k-header>
-    This is your custom view
+  <k-view
+    className="k-test-view">
+    <k-header>CloudFront Invalidations</k-header>
+    <k-grid
+      gutter="small">
+      <k-column
+        width="1/1">
+        <k-text
+          theme="help">Every content is cached and sometimes you need to free the cache up.
+        </k-text>
+      </k-column>
+      <k-column
+        width="1/1">
+        <k-button
+          icon="refresh"
+          @click="invalidate">Invalidate
+        </k-button>
+      </k-column>
+    </k-grid>
   </k-view>
 </template>
 
 <script>
-  export default {
-  /** put your view logic here **/
+export default {
+  methods: {
+    invalidate() {
+      this.$api.get('cloudfront/invalidate').then(() => {
+        console.log('invalidation was sent');
+      })
+    }
+  }
 };
 </script>
-
-<style lang="scss">
-  /** put your css here **/
-</style>

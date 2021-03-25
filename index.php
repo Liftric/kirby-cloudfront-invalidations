@@ -30,6 +30,17 @@ Kirby::plugin('liftric/cloudfrontinvalidations', [
             return $site->url();
         },
     ],
+    'api' => [
+        'routes' => [
+            [
+                'pattern' => 'cloudfront/invalidate',
+                'method' => 'get',
+                'action' => function () {
+                    return CloudFrontInvalidations::invalidate();
+                }
+            ]
+        ]
+    ],
     'hooks' => [
         // Page
         'page.changeNum:after' => function ($newPage) {

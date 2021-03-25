@@ -117,74 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../node_modules/vue-hot-reload-api/dist/index.js":[function(require,module,exports) {
+})({"../node_modules/vue-hot-reload-api/dist/index.js":[function(require,module,exports) {
 var Vue // late bind
 var version
 var map = Object.create(null)
@@ -8898,8 +8831,30 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
-  /** put your view logic here **/
+  methods: {
+    invalidate: function invalidate() {
+      this.$api.get('cloudfront/invalidate').then(function () {
+        console.log('invalidation was sent');
+      });
+    }
+  }
 };
 exports.default = _default;
         var $eebd39 = exports.default || module.exports;
@@ -8918,8 +8873,40 @@ exports.default = _default;
     "k-view",
     { attrs: { className: "k-test-view" } },
     [
-      _c("k-header", [_vm._v("Example")]),
-      _vm._v("\n  This is your custom view\n")
+      _c("k-header", [_vm._v("CloudFront Invalidations")]),
+      _vm._v(" "),
+      _c(
+        "k-grid",
+        { attrs: { gutter: "small" } },
+        [
+          _c(
+            "k-column",
+            { attrs: { width: "1/1" } },
+            [
+              _c("k-text", { attrs: { theme: "help" } }, [
+                _vm._v(
+                  "Every content is cached and sometimes you need to free the cache up.\n      "
+                )
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "k-column",
+            { attrs: { width: "1/1" } },
+            [
+              _c(
+                "k-button",
+                { attrs: { icon: "refresh" }, on: { click: _vm.invalidate } },
+                [_vm._v("Invalidate\n      ")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
     ],
     1
   )
@@ -8951,13 +8938,9 @@ render._withStripped = true
         }
 
         
-        var reloadCSS = require('_css_loader');
-        module.hot.dispose(reloadCSS);
-        module.hot.accept(reloadCSS);
-      
       }
     })();
-},{"_css_loader":"../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"index.js":[function(require,module,exports) {
+},{"vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _View = _interopRequireDefault(require("./components/View.vue"));
@@ -8966,10 +8949,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 panel.plugin("liftric/cloudfrontinvalidations", {
   views: {
-    example: {
+    cloudfront: {
       component: _View.default,
-      icon: "preview",
-      label: "Example"
+      icon: "refresh",
+      label: "CloudFront"
     }
   }
 });
@@ -9001,7 +8984,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57778" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58162" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

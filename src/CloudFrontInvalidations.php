@@ -35,6 +35,43 @@ class CloudFrontInvalidations
         }
     }
 
+    public static function invalidate()
+    {
+        $distributionID = option('liftric.cloudfrontinvalidations.distributionID');
+        if ($distributionID == '') {
+            return '{}';
+        }
+
+        $cloudFrontConfig = [
+            'version' => 'latest',
+            'region' => 'eu-central-1', // basically irrelevant for AWS CloudFront invalidations
+        ];
+
+        $awsAccessKeyID = option('liftric.cloudfrontinvalidations.awsAccessKeyID');
+        $awsSecretAccessKey = option('liftric.cloudfrontinvalidations.awsSecretAccessKey');
+        if ($awsAccessKeyID != '' && $awsSecretAccessKey != '') {
+            $cloudFrontConfig['credentials'] = [
+                'key' => $awsAccessKeyID,
+                'secret' => $awsSecretAccessKey
+            ];
+        }
+
+        $cloudFront = new CloudFrontClient($cloudFrontConfig);
+        $invalidation = [
+            'DistributionId' => $distributionID,
+            'InvalidationBatch' => [
+                'CallerReference' => Str::random(16),
+                'Paths' => [
+                    'Items' => ['/*'],
+                    'Quantity' => 1
+                ]
+            ]
+        ];
+        $cloudFront->createInvalidation($invalidation);
+
+        return '{}';
+    }
+
     public static function purgeURLs($pagesOrURLs)
     {
         if (!$pagesOrURLs) {

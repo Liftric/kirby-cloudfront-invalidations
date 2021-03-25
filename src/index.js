@@ -2,10 +2,10 @@ import View from "./components/View.vue";
 
 panel.plugin("liftric/cloudfrontinvalidations", {
   views: {
-    example: {
+    cloudfront: {
       component: View,
-      icon: "preview",
-      label: "Example"
+      icon: "refresh",
+      label: "CloudFront"
     }
   }
 });
