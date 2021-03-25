@@ -42,55 +42,55 @@ Kirby::plugin('liftric/cloudfrontinvalidations', [
         ]
     ],
     'hooks' => [
-        // Page
-        'page.changeNum:after' => function ($newPage) {
-            CloudFrontInvalidations::handlePageHook('page.changeNum:after', $newPage);
-        },
-        'page.changeSlug:after' => function ($newPage, $oldPage) {
-            CloudFrontInvalidations::handlePageHook('page.changeSlug:after', $newPage, $oldPage);
-        },
-        'page.changeStatus:after' => function ($newPage) {
-            CloudFrontInvalidations::handlePageHook('page.changeStatus:after', $newPage);
-        },
-        'page.changeTemplate:after' => function ($newPage) {
-            CloudFrontInvalidations::handlePageHook('page.changeTemplate:after', $newPage);
-        },
-        'page.changeTitle:after' => function ($newPage) {
-            CloudFrontInvalidations::handlePageHook('page.changeTitle:after', $newPage);
-        },
-        'page.create:after' => function ($page) {
-            CloudFrontInvalidations::handlePageHook('page.create:after', $page);
-        },
-        'page.delete:after' => function ($status, $page) {
-            CloudFrontInvalidations::handlePageHook('page.delete:after', $page);
-        },
-        'page.update:after' => function ($newPage, $oldPage) {
-            CloudFrontInvalidations::handlePageHook('page.changeSlug:after', $newPage, $oldPage);
-        },
-
-        // File
-        'file.changeName:after' => function ($newFile, $oldFile) {
-            CloudFrontInvalidations::handleFileHook('file.changeName:after', $newFile, $oldFile);
-        },
-        'file.changeSort:after' => function ($newFile, $oldFile) {
-            CloudFrontInvalidations::handleFileHook('file.changeSort:after', $newFile, $oldFile);
-        },
-        'file.create:after' => function ($file) {
-            CloudFrontInvalidations::handleFileHook('file.create:after', $file);
-        },
-        'file.delete:after' => function ($status, $file) {
-            CloudFrontInvalidations::handleFileHook('file.delete:after', $file);
-        },
-        'file.replace:after' => function ($newFile, $oldFile) {
-            CloudFrontInvalidations::handleFileHook('file.replace:after', $newFile, $oldFile);
-        },
-        'file.update:after' => function ($newFile, $oldFile) {
-            CloudFrontInvalidations::handleFileHook('file.update:after', $newFile, $oldFile);
-        },
-
-        // Site
-        'site.update:after' => function ($newSite, $oldSite) {
-            CloudFrontInvalidations::handleSiteHook('site.update:after', $newSite);
-        },
+//        // Page
+//        'page.changeNum:after' => function ($newPage) {
+//            CloudFrontInvalidations::handlePageHook('page.changeNum:after', $newPage);
+//        },
+//        'page.changeSlug:after' => function ($newPage, $oldPage) {
+//            CloudFrontInvalidations::handlePageHook('page.changeSlug:after', $newPage, $oldPage);
+//        },
+//        'page.changeStatus:after' => function ($newPage) {
+//            CloudFrontInvalidations::handlePageHook('page.changeStatus:after', $newPage);
+//        },
+//        'page.changeTemplate:after' => function ($newPage) {
+//            CloudFrontInvalidations::handlePageHook('page.changeTemplate:after', $newPage);
+//        },
+//        'page.changeTitle:after' => function ($newPage) {
+//            CloudFrontInvalidations::handlePageHook('page.changeTitle:after', $newPage);
+//        },
+//        'page.create:after' => function ($page) {
+//            CloudFrontInvalidations::handlePageHook('page.create:after', $page);
+//        },
+//        'page.delete:after' => function ($status, $page) {
+//            CloudFrontInvalidations::handlePageHook('page.delete:after', $page);
+//        },
+//        'page.update:after' => function ($newPage, $oldPage) {
+//            CloudFrontInvalidations::handlePageHook('page.changeSlug:after', $newPage, $oldPage);
+//        },
+//
+//        // File
+//        'file.changeName:after' => function ($newFile, $oldFile) {
+//            CloudFrontInvalidations::handleFileHook('file.changeName:after', $newFile, $oldFile);
+//        },
+//        'file.changeSort:after' => function ($newFile, $oldFile) {
+//            CloudFrontInvalidations::handleFileHook('file.changeSort:after', $newFile, $oldFile);
+//        },
+//        'file.create:after' => function ($file) {
+//            CloudFrontInvalidations::handleFileHook('file.create:after', $file);
+//        },
+//        'file.delete:after' => function ($status, $file) {
+//            CloudFrontInvalidations::handleFileHook('file.delete:after', $file);
+//        },
+//        'file.replace:after' => function ($newFile, $oldFile) {
+//            CloudFrontInvalidations::handleFileHook('file.replace:after', $newFile, $oldFile);
+//        },
+//        'file.update:after' => function ($newFile, $oldFile) {
+//            CloudFrontInvalidations::handleFileHook('file.update:after', $newFile, $oldFile);
+//        },
+//
+//        // Site
+//        'site.update:after' => function ($newSite, $oldSite) {
+//            CloudFrontInvalidations::handleSiteHook('site.update:after', $newSite);
+//        },
     ],
 ]);
